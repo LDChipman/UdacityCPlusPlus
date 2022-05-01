@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 
-using std::abs;
 using std::cout;
 using std::fstream;
 using std::istringstream;
@@ -57,10 +56,6 @@ void PrintBoard(vector<vector<State>> board) {
     }
     cout << "\n";
   }
-}
-
-int Heuristic(int x1, int y1, int x2, int y2) {
-  return abs(x2 - x1) + abs(y2 - y1);
 }
 
 vector<vector<State>> Search(vector<vector<State>> grid, int start[2],
