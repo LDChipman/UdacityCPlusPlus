@@ -1,0 +1,6 @@
+[submodule "foundations/openMapPlanner/CppND-Route-Planning-Project"]
+	path = foundations/openMapPlanner/CppND-Route-Planning-Project
+	url = https://github.com/udacity/CppND-Route-Planning-Project.git
+[submodule "foundations/openMapPlanner/P0267_RefImpl"]
+	path = foundations/openMapPlanner/P0267_RefImpl
+	url = https://github.com/cpp-io2d/P0267_RefImpl
