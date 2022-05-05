@@ -15,13 +15,8 @@ private:
   int year{0};
 };
 
-// TODO: Define Date::Day(int day)
 void Date::Day(int day) { Date::day = day; }
-
-// TODO: Define Date::Month(int month)
 void Date::Month(int month) { Date::month = month; }
-
-// TODO: Define Date::Year(int year)
 void Date::Year(int year) { Date::year = year; }
 
 // Test in main
