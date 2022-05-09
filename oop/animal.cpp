@@ -30,8 +30,8 @@ int main() {
 
   Snake snake;
   snake.color = "Red and white";
-  snake.name = "Stripes";
-  snake.age = 0;
-  snake.length = 0;
+  snake.name = "Scales";
+  snake.age = 8;
+  snake.length = 76;
   snake.MakeSound();
 }
