@@ -16,14 +16,14 @@ public:
     return (std::acos(0.0) * 2) *
            (1.3333333333333 * (radius_ * radius_ * radius_));
   }
+  static float GetVolume(int radius) {
+    return (std::acos(0.0) * 2) *
+           (1.3333333333333 * (radius * radius * radius));
+  }
 
 private:
   int radius_;
 };
 
 // Test
-int main(void) {
-  Sphere sphere(5);
-  assert(sphere.GetRadius() == 5);
-  assert(abs(sphere.GetVolume() - 523.6) < 1);
-}
+int main(void) { assert(abs(Sphere::GetVolume(5) - 523.6) < 1); }
