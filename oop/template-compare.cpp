@@ -1,6 +1,5 @@
 #include <assert.h>
 
-// TODO: Declare a generic, templatized function Max()
 template <typename Type> Type Max(Type t1, Type t2) {
   return t1 > t2 ? t1 : t2;
 }
