@@ -1,0 +1,3 @@
+[submodule "CppND-System-Monitor"]
+	path = CppND-System-Monitor
+	url = https://github.com/udacity/CppND-System-Monitor
