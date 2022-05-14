@@ -4,7 +4,6 @@
 #include <unistd.h>
 #include <vector>
 
-
 #include "process.h"
 
 using std::string;
@@ -21,17 +20,19 @@ string Process::Ram() { return Process::ram_; }
 
 string Process::User() { return Process::user_; }
 
+string Process::Uid() { return Process::uid_; }
+
 long int Process::UpTime() { return Process::upTime_; }
 
-// TODO: Overload the "less than" comparison operator for Process objects
-// REMOVE: [[maybe_unused]] once you define the function
-bool Process::operator<(Process const &a [[maybe_unused]]) const {
-  return true;
+bool Process::operator>(Process const &a) const {
+  return std::stoi(ram_) > std::stoi(a.ram_);
 }
 
 void Process::SetPid(int pid) { Process::pid_ = pid; }
 
 void Process::SetUser(string user) { Process::user_ = user; }
+
+void Process::SetUid(string uid) { Process::uid_ = uid; }
 
 void Process::SetCommand(string command) { Process::command_ = command; }
 
