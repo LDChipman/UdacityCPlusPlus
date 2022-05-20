@@ -102,23 +102,10 @@ long LinuxParser::UpTime() {
   return seconds;
 }
 
-// TODO: Read and return the number of jiffies for the system
-long LinuxParser::Jiffies() { return 0; }
-
-// TODO: Read and return the number of active jiffies for a PID
-// REMOVE: [[maybe_unused]] once you define the function
-long LinuxParser::ActiveJiffies(int pid [[maybe_unused]]) { return 0; }
-
-// TODO: Read and return the number of active jiffies for the system
-long LinuxParser::ActiveJiffies() { return 0; }
-
-// TODO: Read and return the number of idle jiffies for the system
-long LinuxParser::IdleJiffies() { return 0; }
-
-vector<string> LinuxParser::CpuUtilization() {
-  string value1, value2, value3, value4, value5, value6, value7, value8, value9,
+vector<int> LinuxParser::CpuUtilization() {
+  int value1, value2, value3, value4, value5, value6, value7, value8, value9,
       value10;
-  vector<string> values;
+  vector<int> values;
   string name;
   string line;
   std::ifstream stream(kProcDirectory + kStatFilename);
@@ -129,8 +116,16 @@ vector<string> LinuxParser::CpuUtilization() {
       while (linestream >> name >> value1 >> value2 >> value3 >> value4 >>
              value5 >> value6 >> value7 >> value8 >> value9 >> value10) {
         if (name == "cpu") {
-          values = {value1, value2, value3, value4, value5,
-                    value6, value7, value8, value9, value10};
+          values.emplace_back(value1);
+          values.emplace_back(value2);
+          values.emplace_back(value3);
+          values.emplace_back(value4);
+          values.emplace_back(value5);
+          values.emplace_back(value6);
+          values.emplace_back(value7);
+          values.emplace_back(value8);
+          values.emplace_back(value9);
+          values.emplace_back(value10);
           return values;
         }
       }
@@ -266,4 +261,29 @@ long LinuxParser::UpTime(int pid) {
     return UpTime() - value / sysconf(_SC_CLK_TCK);
   }
   return -1;
+}
+
+vector<int> LinuxParser::Processor(int pid) {
+  int utime, stime, cutime, cstime, starttime;
+  int dummy;
+  string dummyString;
+  vector<int> values;
+  string line;
+  std::ifstream stream(kProcDirectory + to_string(pid) + kStatFilename);
+
+  if (stream.is_open()) {
+    std::getline(stream, line);
+    std::istringstream linestream(line);
+    linestream >> dummy >> dummyString >> dummyString >> dummy >> dummy >>
+        dummy >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy >> dummy >>
+        utime >> stime >> cutime >> cstime >> dummy >> dummy >> dummy >>
+        dummy >> starttime;
+    values.emplace_back(utime);
+    values.emplace_back(stime);
+    values.emplace_back(cutime);
+    values.emplace_back(cstime);
+    values.emplace_back(starttime);
+    return values;
+  }
+  return {};
 }

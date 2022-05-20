@@ -15,8 +15,16 @@ using std::size_t;
 using std::string;
 using std::vector;
 
-// TODO: Return the system's CPU
-Processor &System::Cpu() { return cpu_; }
+Processor &System::Cpu() {
+
+  if (!setInitial) {
+    cpu_.SetInitPrev();
+  }
+
+  cpu_.SetProcessor(LinuxParser::CpuUtilization());
+
+  return cpu_;
+}
 
 vector<Process> &System::Processes() {
 
@@ -28,6 +36,7 @@ vector<Process> &System::Processes() {
     process.SetUid(LinuxParser::Uid(process.Pid()));
     process.SetUser(LinuxParser::User(process.Uid()));
     process.SetCommand(LinuxParser::Command(process.Pid()));
+    process.SetCpuUtilization();
     process.SetRam(LinuxParser::Ram(process.Pid()));
     process.SetUpTime(LinuxParser::UpTime(process.Pid()));
     processes_.emplace_back(process);

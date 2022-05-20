@@ -1,7 +1,9 @@
 #ifndef PROCESS_H
 #define PROCESS_H
 
+#include "process_processor.h"
 #include <string>
+
 /*
 Basic class for Process representation
 It contains relevant attributes as shown below
@@ -20,7 +22,7 @@ public:
   void SetUser(std::string user);
   void SetUid(std::string uid);
   void SetCommand(std::string command);
-  void SetCpuUtilization(float cpuUtilization);
+  void SetCpuUtilization();
   void SetRam(std::string ram);
   void SetUpTime(long int uptime);
 
@@ -32,6 +34,7 @@ private:
   float cpuUtilization_;
   std::string ram_;
   long int upTime_;
+  ProcessProcessor processor;
 };
 
 #endif
