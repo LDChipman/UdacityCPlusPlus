@@ -11,8 +11,10 @@ GraphNode::~GraphNode()
     //// STUDENT CODE
     ////
 
-    delete _chatBot; 
-
+    if (_chatBot != nullptr) {
+        _chatBot = nullptr;
+    }
+    
     ////
     //// EOF STUDENT CODE
 }
