@@ -52,18 +52,50 @@ ChatBot::ChatBot(const ChatBot& chatbot) {
     _chatLogic = chatbot._chatLogic;
     _rootNode = chatbot._rootNode;
 
-    _image = new wxBitmap(chatbot._image);
+    _image = new wxBitmap(*chatbot._image);
 
 }
 
-ChatBot::ChatBot& operator=(const ChatBot& chatbot) {
+ChatBot& ChatBot::operator=(const ChatBot& chatbot) {
     
     std::cout << "ChatBot Copy Assignment Operator\n";
 
-    this._chatLogic = chatbot._chatLogic;
-    this._rootNode = chatbot._rootNode;
+    this->_chatLogic = chatbot._chatLogic;
+    this->_rootNode = chatbot._rootNode;
 
-    this._image = new wxBitmap(chatbot._image);
+    this->_image = new wxBitmap(*chatbot._image);
+
+    return *this;
+
+}
+
+ChatBot::ChatBot(ChatBot&& chatbot) {
+
+    std::cout << "ChatBot Move Constructor/n";
+
+    _chatLogic = chatbot._chatLogic;
+    chatbot._chatLogic = nullptr;
+
+    _rootNode = chatbot._rootNode;
+    chatbot._chatLogic = nullptr;
+
+    _image = chatbot._image;
+    chatbot._image = nullptr;
+
+}
+
+ChatBot& ChatBot::operator=(ChatBot&& chatbot) {
+
+    std::cout << "ChatBot Move Assignment Operator\n";
+
+    this->_chatLogic = chatbot._chatLogic;
+    chatbot._chatLogic = nullptr;
+
+    this->_rootNode = chatbot._rootNode;
+    chatbot._chatLogic = nullptr;
+
+    this->_image = chatbot._image;
+    chatbot._image = nullptr;
 
     return *this;
 
