@@ -10,10 +10,6 @@ GraphNode::~GraphNode()
 {
     //// STUDENT CODE
     ////
-
-    if (_chatBot != nullptr) {
-        _chatBot = nullptr;
-    }
     
     ////
     //// EOF STUDENT CODE
