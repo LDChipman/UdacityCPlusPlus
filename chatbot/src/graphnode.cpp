@@ -16,12 +16,6 @@ GraphNode::~GraphNode()
     {
         it->reset();
     }
-
-    // delete all parent edges
-    for (auto it = std::begin(_parentEdges); it != std::end(_parentEdges); ++it)
-    {
-        delete *it;
-    }
     
     ////
     //// EOF STUDENT CODE
