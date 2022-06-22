@@ -43,9 +43,6 @@ ChatBot::~ChatBot()
     }
 }
 
-//// STUDENT CODE
-////
-
 ChatBot::ChatBot(const ChatBot& chatbot) {
 
     _chatLogic = chatbot._chatLogic;
@@ -108,9 +105,6 @@ ChatBot& ChatBot::operator=(ChatBot&& chatbot) {
     return *this;
 
 }
-
-////
-//// EOF STUDENT CODE
 
 void ChatBot::ReceiveMessageFromUser(std::string message)
 {
