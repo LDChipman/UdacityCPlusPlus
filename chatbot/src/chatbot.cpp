@@ -20,7 +20,6 @@ ChatBot::ChatBot()
 // constructor WITH memory allocation
 ChatBot::ChatBot(std::string filename)
 {
-    std::cout << "ChatBot Constructor" << std::endl;
     
     // invalidate data handles
     _chatLogic = nullptr;
@@ -28,6 +27,8 @@ ChatBot::ChatBot(std::string filename)
 
     // load image into heap memory
     _image = new wxBitmap(filename, wxBITMAP_TYPE_PNG);
+    
+    std::cout << "ChatBot Constructor" << std::endl;
 }
 
 ChatBot::~ChatBot()
@@ -47,23 +48,24 @@ ChatBot::~ChatBot()
 
 ChatBot::ChatBot(const ChatBot& chatbot) {
 
-    std::cout << "ChatBot Copy Constructor\n";
-
     _chatLogic = chatbot._chatLogic;
     _rootNode = chatbot._rootNode;
 
     _image = new wxBitmap(*chatbot._image);
 
+    std::cout << "ChatBot Copy Constructor\n";
+
 }
 
 ChatBot& ChatBot::operator=(const ChatBot& chatbot) {
     
-    std::cout << "ChatBot Copy Assignment Operator\n";
 
     this->_chatLogic = chatbot._chatLogic;
     this->_rootNode = chatbot._rootNode;
 
     this->_image = new wxBitmap(*chatbot._image);
+
+    std::cout << "ChatBot Copy Assignment Operator\n";
 
     return *this;
 
@@ -71,7 +73,6 @@ ChatBot& ChatBot::operator=(const ChatBot& chatbot) {
 
 ChatBot::ChatBot(ChatBot&& chatbot) {
 
-    std::cout << "ChatBot Move Constructor/n";
 
     _chatLogic = chatbot._chatLogic;
     chatbot._chatLogic = nullptr;
@@ -80,13 +81,16 @@ ChatBot::ChatBot(ChatBot&& chatbot) {
     chatbot._chatLogic = nullptr;
 
     _image = chatbot._image;
-    chatbot._image = nullptr;
+    chatbot._image = NULL;
+
+    _chatLogic->SetChatbotHandle(this);
+
+    std::cout << "ChatBot Move Constructor/n";
 
 }
 
 ChatBot& ChatBot::operator=(ChatBot&& chatbot) {
 
-    std::cout << "ChatBot Move Assignment Operator\n";
 
     this->_chatLogic = chatbot._chatLogic;
     chatbot._chatLogic = nullptr;
@@ -95,7 +99,11 @@ ChatBot& ChatBot::operator=(ChatBot&& chatbot) {
     chatbot._chatLogic = nullptr;
 
     this->_image = chatbot._image;
-    chatbot._image = nullptr;
+    chatbot._image = NULL;
+
+    _chatLogic->SetChatbotHandle(this);
+    
+    std::cout << "ChatBot Move Assignment Operator\n";
 
     return *this;
 
