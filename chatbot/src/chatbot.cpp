@@ -82,7 +82,7 @@ ChatBot::ChatBot(ChatBot&& chatbot) {
 
     _chatLogic->SetChatbotHandle(this);
 
-    std::cout << "ChatBot Move Constructor/n";
+    std::cout << "ChatBot Move Constructor\n";
 
 }
 
