@@ -38,6 +38,7 @@ class TrafficLight : public TrafficObject
 public:
     enum TrafficLightPhase {red, green};
     // constructor / destructor
+    TrafficLight();
 
     // getters / setters
 

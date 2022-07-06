@@ -7,6 +7,7 @@
 #include "Street.h"
 #include "Intersection.h"
 #include "Vehicle.h"
+#include "TrafficLight.h"
 
 /* Implementation of class "WaitingVehicles" */
 
@@ -149,13 +150,8 @@ void Intersection::processVehicleQueue()
 
 bool Intersection::trafficLightIsGreen()
 {
-   // please include this part once you have solved the final project tasks
-   /*
-   if (_trafficLight.getCurrentPhase() == TrafficLightPhase::green)
+   if (_trafficLight.getCurrentPhase() == TrafficLight::green)
        return true;
    else
        return false;
-   */
-
-  return true; // makes traffic light permanently green
 } 
