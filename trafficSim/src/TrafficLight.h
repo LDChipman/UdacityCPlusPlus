@@ -16,12 +16,15 @@ class Vehicle;
 // Also, there should be an std::condition_variable as well as an std::mutex as private members. 
 
 template <class T>
-class MessageQueue
-{
+class MessageQueue  {
 public:
+    void send(T&&);
+    T receive();
+    std::deque<T> _queue;
 
 private:
-    
+    std::condition_variable _condition;
+    std::mutex mutex;
 };
 
 // FP.1 : Define a class „TrafficLight“ which is a child class of TrafficObject. 
